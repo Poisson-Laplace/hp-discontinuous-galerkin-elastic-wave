@@ -1,0 +1,70 @@
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ mkdir -p include/dgwave src tests
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ ls
+CMakeLists.txt  Dubiner.hpp  Jacobi.hpp  RefTriangle.cpp  Types.hpp  include  test_reference.cpp
+Dubiner.cpp     Jacobi.cpp   README.md   RefTriangle.hpp  build      src      tests
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ mv Types.hpp Jacobi.hpp Dubiner.hpp RefTriangle.hpp  include/dgwave/
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ ls
+CMakeLists.txt  Dubiner.cpp  Jacobi.cpp  README.md  RefTriangle.cpp  build  include  src  test_reference.cpp  tests
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ mv Jacobi.cpp Dubiner.cpp RefTriangle.cpp            src/
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ mv test_reference.cpp                                tests/
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ ls
+CMakeLists.txt  README.md  build  include  src  tests
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ ls build/
+CMakeCache.txt  CMakeFiles  Testing
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ rm -rf build/
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Eigen: found via CONFIG (3.4.0)
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/ubuntu/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit/build
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ cmake --build build -j
+[ 33%] Building CXX object CMakeFiles/dgwave.dir/src/RefTriangle.cpp.o
+[ 33%] Building CXX object CMakeFiles/dgwave.dir/src/Jacobi.cpp.o
+[ 50%] Building CXX object CMakeFiles/dgwave.dir/src/Dubiner.cpp.o
+[ 66%] Linking CXX static library libdgwave.a
+[ 66%] Built target dgwave
+[ 83%] Building CXX object CMakeFiles/test_reference.dir/tests/test_reference.cpp.o
+[100%] Linking CXX executable test_reference
+[100%] Built target test_reference
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ ./build/test_reference
+=====================================================================
+ dgwave - reference element verification
+=====================================================================
+
+1. Orthonormality of the 1D Jacobi basis
+  [PASS] <P_m, P_n>_(1,0) = delta_mn, degrees 0..12            err = 3.671e-14   (tol 1.0e-12)
+
+2. Gauss-Jacobi exactness up to degree 2n-1
+  [PASS] Gauss-Legendre monomials, n = 1..10                   err = 2.665e-15   (tol 1.0e-13)
+  [PASS] Gauss-Jacobi(1,0) monomials, n = 1..10                err = 3.456e-15   (tol 1.0e-13)
+
+3. Reference triangle: area and mass matrix
+  [PASS] sum of volume weights = |T| = 2, p = 0..10            err = 2.220e-15   (tol 1.0e-13)
+  [PASS] V^T W V = I  (orthonormal mass matrix), p = 0..10     err = 2.290e-14   (tol 1.0e-11)
+
+4. Analytic gradients vs central finite differences
+  [PASS] d(psi)/dr, d(psi)/ds vs central FD, p = 1..8          err = 4.502e-08   (tol 1.0e-06)
+
+5. Divergence theorem on the reference element
+  [PASS] int grad(psi) = oint psi*n, p = 0..8                  err = 2.789e-13   (tol 1.0e-11)
+
+6. Hierarchical mode ordering (p-refinement = zero padding)
+  [PASS] modes(p) is a prefix of modes(p+1), p = 0..9          err = 0.000e+00   (tol 0.0e+00)
+  [PASS] leading block of V(p+1) equals the degree-p basis     err = 0.000e+00   (tol 1.0e-14)
+
+7. L2 projection and face traces
+  [PASS] volume reconstruction of a degree-3 polynomial        err = 2.576e-14   (tol 1.0e-12)
+  [PASS] face traces match the analytic function on all 3 edges  err = 3.553e-14   (tol 1.0e-12)
+  [PASS] mirrorIndex maps a face node to its neighbour's node  err = 5.551e-16   (tol 1.0e-14)
+
+---------------------------------------------------------------------
+ ALL CHECKS PASSED
+ubuntu@ubuntu:~/Desktop/i-dint-lked-the-faggot-ass-engine-you-did-nigga-now-look-at-this-shit$ 
+
+
